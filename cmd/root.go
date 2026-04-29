@@ -24,11 +24,18 @@ to identify resources that have drifted from their declared configuration.`,
 	},
 }
 
+// Execute runs the root command and exits with a non-zero status on failure.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
+}
+
+// exitWithError prints an error message to stderr and exits with status 1.
+func exitWithError(msg string) {
+	fmt.Fprintf(os.Stderr, "error: %s\n", msg)
+	os.Exit(1)
 }
 
 func init() {
